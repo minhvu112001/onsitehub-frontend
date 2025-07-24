@@ -58,18 +58,6 @@ const handleRegister = async () => {
 
 <style scoped>
 .input {
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border: 1px solid #d1d5db; /* gray-300 */
-  border-radius: 0.5rem; /* rounded-lg */
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.input:focus {
-  border-color: #60a5fa; /* blue-400 */
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* focus:ring */
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-400;
 }
 </style>
