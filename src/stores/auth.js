@@ -6,10 +6,21 @@ export const useAuthStore = defineStore('auth', {
     user: null,
     token: localStorage.getItem('token') || null
   }),
+
   actions: {
-    async register(email, password) {
-      const response = await axios.post('/api/register', { email, password })
-      this.user = response.data.user
+    async register(formData) {
+      try {
+        const response = await axios.post('/api/register', formData)
+        const { token, user } = response.data
+
+        this.token = token
+        this.user = user
+
+        localStorage.setItem('token', token)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      } catch (error) {
+        throw error
+      }
     },
 
     async login(credentials) {
