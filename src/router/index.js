@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
-import Dashboard from '../pages/Dashboard.vue'
+import Dashboard from '../pages/admin/Dashboard.vue'
 import DashboardCard from '@/components/admin/DashboardCard.vue'
 import Register from '../pages/Register.vue'
 
@@ -10,7 +10,7 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/admin/dashboard', name: 'DashboardCard', component: () => import('@/pages/admin/Dashboard.vue') },
+  { path: '/admin/dashboard', name: 'DashboardCard', component: () => import('@/pages/admin/DashboardCard.vue') },
   {path: '/register', name: 'Register', component: Register },
 ]
 
