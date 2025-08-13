@@ -5,15 +5,29 @@
 
       <form @submit.prevent="handleRegister">
         <div class="mb-4">
-          <label class="block text-gray-700">Email</label>
-          <input type="email" v-model="email" required class="w-full p-2 border rounded" />
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700">Mật khẩu</label>
-          <input type="password" v-model="password" required class="w-full p-2 border rounded" />
+          <label class="block text-gray-700 mb-1">Email</label>
+          <input
+            type="email"
+            v-model="email"
+            required
+            class="w-full p-2 border rounded"
+          />
         </div>
 
-        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-1">Mật khẩu</label>
+          <input
+            type="password"
+            v-model="password"
+            required
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        >
           Đăng ký
         </button>
       </form>
@@ -23,16 +37,22 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 const email = ref('')
 const password = ref('')
-const auth = useAuthStore()
+const router = useRouter()
 
 const handleRegister = async () => {
   try {
-    await auth.register(email.value, password.value)
+    // 🔹 Giả lập đăng ký (thay bằng API thật)
+    localStorage.setItem('token', 'fake-jwt-token')
+    localStorage.setItem('email', email.value)
+
     alert('Đăng ký thành công!')
+
+    // 🔹 Redirect về trang chủ
+    router.push('/')
   } catch (err) {
     alert('Đăng ký thất bại: ' + err.message)
   }
