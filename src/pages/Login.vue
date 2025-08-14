@@ -1,51 +1,58 @@
 <template>
-  <MainLayout>
-    <div class="max-w-md mx-auto mt-8">
-      <h2 class="text-2xl font-bold mb-4">Đăng nhập</h2>
-      <form class="space-y-4" @submit.prevent="login">
-        <input
-          v-model="email"
-          type="email"
-          placeholder="Email"
-          class="w-full p-2 border rounded"
-        />
-        <input
-          v-model="password"
-          type="password"
-          placeholder="Mật khẩu"
-          class="w-full p-2 border rounded"
-        />
-        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+      <h1 class="text-2xl font-semibold mb-6 text-center">Đăng nhập</h1>
+
+      <form @submit.prevent="handleLogin">
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-1">Email</label>
+          <input
+            type="email"
+            v-model="email"
+            required
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-1">Mật khẩu</label>
+          <input
+            type="password"
+            v-model="password"
+            required
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        >
           Đăng nhập
         </button>
       </form>
     </div>
-  </MainLayout>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import MainLayout from '../layouts/MainLayout.vue'
-// import axios from 'axios' // Nếu dùng API thật
 
-const router = useRouter()
 const email = ref('')
 const password = ref('')
+const router = useRouter()
 
-const login = async () => {
+const handleLogin = async () => {
   try {
-    // Ví dụ login giả lập (thay bằng API thật)
-    // const res = await axios.post('/api/login', { email: email.value, password: password.value })
-    // localStorage.setItem('token', res.data.token)
-
-    // Giả lập thành công
+    // 🔹 Giả lập login thành công
     localStorage.setItem('token', 'fake-jwt-token')
+    localStorage.setItem('email', email.value)
 
-    // Quay về trang chủ
-    router.push('/')
+    alert('Đăng nhập thành công!')
+    router.push('/dashboard')
   } catch (err) {
-    console.error('Login failed:', err)
+    alert('Đăng nhập thất bại: ' + err.message)
   }
 }
 </script>

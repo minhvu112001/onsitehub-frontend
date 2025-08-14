@@ -11,15 +11,17 @@
 
     <div class="mt-10">
       <h2 class="text-lg font-medium mb-4">Hệ thống</h2>
-      <p class="text-sm text-gray-700">Chào mừng bạn đến với bảng điều khiển quản trị OnsiteHub. Tại đây bạn có thể theo dõi tình trạng hệ thống, phê duyệt nhà tuyển dụng, xử lý khiếu nại, và xem thống kê tổng quan.</p>
+      <p class="text-sm text-gray-700">
+        Chào mừng bạn đến với bảng điều khiển quản trị OnsiteHub. Tại đây bạn có thể theo dõi tình trạng hệ thống, phê duyệt nhà tuyển dụng, xử lý khiếu nại, và xem thống kê tổng quan.
+      </p>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import DashboardCard from '@/components/admin/DashboardCard.vue'
+// import axios from 'axios' // Dùng khi có API thật
 
 const stats = ref({
   users: 0,
@@ -30,8 +32,16 @@ const stats = ref({
 
 const fetchStats = async () => {
   try {
-    const res = await axios.get('/api/admin/stats') // Giả định backend trả JSON: { users, employers, jobs, applications }
-    stats.value = res.data
+    // 🔹 Giả lập dữ liệu (thay bằng API thật khi có backend)
+    // const res = await axios.get('/api/admin/stats')
+    // stats.value = res.data
+
+    stats.value = {
+      users: 1234,
+      employers: 58,
+      jobs: 420,
+      applications: 1376
+    }
   } catch (err) {
     console.error('Lỗi tải thống kê:', err)
   }

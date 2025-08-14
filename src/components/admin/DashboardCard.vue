@@ -1,31 +1,19 @@
 <template>
-  <div class="bg-white p-5 rounded-xl shadow-md flex items-center space-x-4 w-full">
+  <div class="bg-white rounded shadow p-4 flex items-center space-x-4">
     <div class="text-3xl">
       {{ icon }}
     </div>
-    <div class="flex flex-col">
-      <h3 class="text-sm text-gray-500">{{ title }}</h3>
-      <p class="text-xl font-semibold">{{ value }}</p>
+    <div>
+      <p class="text-gray-600 text-sm">{{ title }}</p>
+      <p class="text-xl font-bold">{{ value }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
 defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  value: {
-    type: [String, Number],
-    default: 0
-  },
-  icon: {
-    type: String,
-    default: '📦'
-  }
+  title: String,
+  value: [String, Number],
+  icon: String
 })
 </script>
-
-<style scoped>
-</style>
